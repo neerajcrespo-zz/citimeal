@@ -23,9 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'db3-nqvnf91iz^*aesnu8!s9-6)+fymxc3f6m#6xipdy_@z2qi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.environ["ENVIRONMENT"] == "production" :
+  DEBUG = False
+else:
+  DEBUG = True
 
-ALLOWED_HOSTS = ['citimeal.ap-south-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['citimeal.ap-south-1.elasticbeanstalk.com','citimeal.com']
 
 
 # Application definition
