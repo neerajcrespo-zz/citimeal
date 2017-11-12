@@ -25,7 +25,7 @@ SECRET_KEY = 'db3-nqvnf91iz^*aesnu8!s9-6)+fymxc3f6m#6xipdy_@z2qi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['citimeal.ap-south-1.elasticbeanstalk.com']
 
 
 # Application definition
