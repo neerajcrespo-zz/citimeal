@@ -30,7 +30,7 @@ else:
 
 
 
-ALLOWED_HOSTS = ['citimeal.ap-south-1.elasticbeanstalk.com','citimeal.com','localhost']
+ALLOWED_HOSTS = ['citimeal.ap-south-1.elasticbeanstalk.com','citimeal.com','localhost','127.0.0.1']
 
 
 # Application definition
