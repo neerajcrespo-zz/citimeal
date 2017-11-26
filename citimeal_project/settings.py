@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ["DB_NAME"] if ("DB_NAME" in os.environ) else 'citimeal',
         'USER': os.environ["DB_USER"] if ("DB_USER" in os.environ) else 'citimeal',
-        'PASSWORD': os.environ["DB_PASSWORD"] if ("DB_PASSWORD" in os.environ) else 'password@123',
+        'PASSWORD': os.environ["DB_PASSWORD"] if ("DB_PASSWORD" in os.environ) else '#Ccrespo12',
         'HOST': os.environ["DB_HOST"] if ("DB_HOST" in os.environ) else 'citimeal.cbfupjnwdw8v.ap-south-1.rds.amazonaws.com',
         'PORT': '5432',
     }
