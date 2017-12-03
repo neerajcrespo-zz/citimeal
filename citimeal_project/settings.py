@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['citimeal.ap-south-1.elasticbeanstalk.com','citimeal.com','loca
 # Application definition
 
 INSTALLED_APPS = [
+    'citimeal.apps.CitimealConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
