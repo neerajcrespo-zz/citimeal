@@ -6,7 +6,7 @@ DELIVERY_STATUS_CHOICES = (
     ('delivered','Delivered'),
 )
 
-class User(models.Model):
+class Address(models.Model):
     user    = models.ForeignKey(User)
     phone   = models.CharField(max_length=120)
     address = models.CharField(max_length=120)
@@ -18,7 +18,7 @@ class User(models.Model):
 class Item(models.Model):
     item_id    = models.CharField(max_length=120)
     item_name  = models.CharField(max_length=120, null=True, blank=True)
-    desciption = models.CharField(max_length=120)
+    description = models.CharField(max_length=120)
     image      = models.ImageField(upload_to="items/", null=True, blank=True)
     price      = models.IntegerField(null=True)
     active     = models.BooleanField(default=True)
@@ -26,6 +26,14 @@ class Item(models.Model):
 
     def __str__(self):
         return str(self.item_name)
+
+class Cart(models.Model):
+    user      = models.ForeignKey(User)
+    items     = models.ManyToManyField(Item)
+    total     = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.user)
 
 
 class Order(models.Model):
