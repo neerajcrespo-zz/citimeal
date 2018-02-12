@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="text-center">
+    <h1>Order Summary</h1>
+  </div>
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_obj.items.all %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ item.item_name }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Total</th>
+        <th>{{ cart_obj.total }}</th>
+      </tr>
+    </thead>
+  </table>
+
+</div>
+<div class="container">
+  <div class="col py-5">
+    <p>Name    : {{ address.name }}</p>
+    <p>Phone   : {{ address.phone }}</p>
+    <p>Address : {{ address.address }}</p>
+  </div>
+  <a class='btn btn-success' href="{% url "order" %}">Order</a>
+</div>
+
+{% endblock %}

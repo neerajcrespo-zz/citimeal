@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Cart</h1>
+
+  {% if cart_obj is not None %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_obj.items.all %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ item.item_name }}</td>
+          <td>{{ item.price }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Total</th>
+          <th>{{ cart_obj.total }}</th>
+        </tr>
+      </thead>
+    </table>
+    <a class='btn btn-success' href="{% url "address" %}">Proceed to Checkout</a>
+
+  {% else %}
+    <p class='lead'>Cart is empty</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}
