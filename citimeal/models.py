@@ -8,8 +8,9 @@ DELIVERY_STATUS_CHOICES = (
 
 class Address(models.Model):
     user    = models.ForeignKey(User)
-    phone   = models.CharField(max_length=120)
-    address = models.CharField(max_length=120)
+    name      = models.CharField(max_length=120, null=True, blank=True)
+    phone   = models.CharField(max_length=120, null=True, blank=True)
+    address = models.TextField(max_length=120, null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
@@ -40,7 +41,7 @@ class Order(models.Model):
     order_id  = models.CharField(max_length=120, null=True, blank=True)
     user      = models.ForeignKey(User)
     items     = models.ManyToManyField(Item)
-    timestamp = models.DateTimeField(null=True)
+    timestamp = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return str(self.order_id)

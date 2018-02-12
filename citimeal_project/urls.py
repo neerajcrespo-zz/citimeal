@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^item/', item_page, name='item'),
     url(r'^cart/', cart_page, name='cart'),
     url(r'^update/', cart_update, name='update'),
+    url(r'^address/', address_page, name='address'),
+    url(r'^order-summary/', summary_page, name='summary'),
     url(r'^order/', order_page, name='order'),
     url(r'^$',TemplateView.as_view(template_name='index.html')),
 ]

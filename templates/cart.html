@@ -31,7 +31,7 @@
         </tr>
       </thead>
     </table>
-    <button type="button" action='{% url "item" %}' class="btn btn-success">Proceed to checkout</button>
+    <a class='btn btn-success' href="{% url "address" %}">Proceed to Checkout</a>
 
   {% else %}
     <p class='lead'>Cart is empty</p>
