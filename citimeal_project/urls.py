@@ -19,9 +19,21 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
+from citimeal.views import *
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^register/', register_page, name='register'),
+    url(r'^login/', login_page, name='login'),
+    url(r'^logout/', logout_page, name='logout'),
+    url(r'^item/', item_page, name='item'),
+    url(r'^cart/', cart_page, name='cart'),
+    url(r'^update/', cart_update, name='update'),
+    url(r'^address/', address_page, name='address'),
+    url(r'^order-summary/', summary_page, name='summary'),
+    url(r'^order/', order_page, name='order'),
     url(r'^$',TemplateView.as_view(template_name='index.html')),
+    url(r'^nav/',TemplateView.as_view(template_name='nav.html')),
 ]
 
 if settings.DEBUG:
