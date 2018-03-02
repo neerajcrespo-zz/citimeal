@@ -1,2 +1,8 @@
-# citimeal
-Personal Food Delivery CMS
+Opauth-Google
+=============
+website: https://citimeal.com
+
+License
+---------
+Copyright © 2018 citimeal.com
+
