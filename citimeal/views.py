@@ -1,10 +1,49 @@
 import random
 from django.conf import settings
+from django.contrib.auth import authenticate, login, logout
+from django.core.exceptions import MultipleObjectsReturned
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
 from .models import *
-from .forms import AddressForm
+from .forms import AddressForm, LoginForm, RegisterForm
+
+def register_page(request):
+    form = RegisterForm(request.POST or None)
+    context = {
+        "form": form
+    }
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
+        new_user = User.objects.create_user(username,email,password)
+        return redirect("/login/")
+    return render(request, "accounts/register.html", context)
+
+
+def login_page(request):
+    form = LoginForm(request.POST or None)
+    context = {
+        "form": form
+    }
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("/")
+        else:
+            print("Error")
+    return render(request, "accounts/login.html", {"form":form})
+
+def logout_page(request):
+    logout(request)
+    return redirect("/")
+
 
 def item_page(request):
     items = Item.objects.all()
@@ -48,20 +87,30 @@ def cart_update(request):
                 item_obj = Item.objects.get(item_name=item_name)
                 cart_obj.items.add(item_obj)
         else:
-            return HttpResponse("<h1>Please login first<h1>")
+            return redirect("login")
     return redirect("cart")
 
 
 def address_page(request):
     address_form = AddressForm(request.POST or None)
-    name = request.POST.get('name')
-    phone = request.POST.get('phone')
-    address = request.POST.get('address')
-    Address.objects.create(user=request.user, name=name, phone=phone, address=address)
-
     context = {
         'address_form' : address_form,
     }
+    name = request.POST.get('name')
+    phone = request.POST.get('phone')
+    address = request.POST.get('address')
+
+    if name is not None:
+        obj = Address.objects.filter(user=request.user)
+        if obj.count() == 0:
+            print("create")
+            Address.objects.create(user=request.user, name=name, phone=phone, address=address)
+        else:
+            print("delete")
+            obj.delete()
+            Address.objects.create(user=request.user, name=name, phone=phone, address=address)
+        return redirect("summary")
+
     return render(request, "address.html", context)
 
 

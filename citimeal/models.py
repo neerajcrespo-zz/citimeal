@@ -8,7 +8,7 @@ DELIVERY_STATUS_CHOICES = (
 
 class Address(models.Model):
     user    = models.ForeignKey(User)
-    name      = models.CharField(max_length=120, null=True, blank=True)
+    name    = models.CharField(max_length=120, null=True, blank=True)
     phone   = models.CharField(max_length=120, null=True, blank=True)
     address = models.TextField(max_length=120, null=True, blank=True)
 
