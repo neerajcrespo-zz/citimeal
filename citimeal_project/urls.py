@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^address/', address_page, name='address'),
     url(r'^order-summary/', summary_page, name='summary'),
     url(r'^order/', order_page, name='order'),
+    url(r'^profile/', profile_page, name='profile'),
     url(r'^$',TemplateView.as_view(template_name='index.html')),
     url(r'^nav/',TemplateView.as_view(template_name='nav.html')),
 ]

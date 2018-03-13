@@ -157,3 +157,17 @@ def order_page(request):
     #
     # send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_message)
     return HttpResponse("Thanks for order! Your order will be delivered soon.")
+
+
+def profile_page(request):
+    try:
+        user = Address.objects.all().get(user=request.user)
+        order = Order.objects.all().get(user=request.user)
+    except:
+        user=None
+        order=None
+    context = {
+        'user' : user,
+        'order': order
+    }
+    return render(request, "profile.html", context)
