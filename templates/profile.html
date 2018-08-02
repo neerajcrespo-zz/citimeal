@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Account</h1>
+  <div class="row">
+    <div class="col-2">
+      <h5>User : </h5>
+    </div>
+    <div class="col">
+      <p>{{ request.user }}</p>
+    </div>
+  </div>
+  {% if user is not None %}
+  <div class="row">
+    <div class="col-2">
+      <h5>Name : </h5>
+    </div>
+    <div class="col">
+      <p>{{ user.name }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <h5>Phone : </h5>
+    </div>
+    <div class="col">
+      <p>{{ user.phone }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <h5>Address : </h5>
+    </div>
+    <div class="col">
+      <p>{{ user.address }}</p>
+    </div>
+  </div>
+  {% endif %}
+
+{% if order is not None %}
+  <h1>Past Order</h1>
+  <div class="row">
+    <div class="col-2">
+      <h5>order-id</h5>
+      <p>{{ order }}</p>
+    </div>
+    <div class="col">
+      <h5>items</h5>
+      {% for i in order.items.all %}
+        <p>{{ i }}</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+</div>
+
+
+{% endblock %}
